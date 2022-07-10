@@ -1,9 +1,14 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "utils.h"
+#include <stdio.h>
+#include "boards.h"
+#include "plays.h"
+#include "game.h"
+#include "ui.h"
 
-
-void main(){
-    int i = randomNumber(1, 50);
-    printf("%d", i);
+int main(){
+    Game game;
+    Plays* plays = NULL;
+    Boards* boards = initBoards();
+    initGame(&game);
+    showBoards(boards);
+    return 1;
 }

@@ -1,4 +1,6 @@
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 char** createBoard(int rows, int columns){
     char** matrix = NULL;
@@ -19,9 +21,8 @@ char** createBoard(int rows, int columns){
     return (matrix);
 }
 
-int randomNumber(int min, int max){
-    time_t t;
-    srand((unsigned)time(&t));
-
-    return rand() % max + min;
+void initBoard(char** board){
+    for(int i=0; i<3; i++)
+        for(int j=0; j<3; j++)
+            board[i][j] = '_';
 }
