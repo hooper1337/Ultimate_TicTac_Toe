@@ -1,0 +1,3 @@
+C:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/cmake-build-debug/CMakeFiles/Ultimate_TicTac_Toe.dir
+C:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir

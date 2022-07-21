@@ -9,6 +9,6 @@ int main(){
     Plays* plays = NULL;
     Boards* boards = initBoards();
     initGame(&game);
-    showBoards(boards);
+    startInterface();
     return 1;
 }

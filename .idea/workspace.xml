@@ -48,7 +48,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/Hugo/Desktop/Ultimate_TicTac_Toe"
+    "last_opened_file_path": "C:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/CMakeLists.txt"
   }
 }]]></component>
   <component name="RunManager">
@@ -72,6 +72,8 @@
       <option name="presentableId" value="Default" />
       <updated>1657409324905</updated>
       <workItem from="1657409326687" duration="5834000" />
+      <workItem from="1658409619745" duration="59000" />
+      <workItem from="1658409710136" duration="4609000" />
     </task>
     <servers />
   </component>

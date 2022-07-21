@@ -2,10 +2,13 @@
 #define ULTIMATE_TICTAC_TOE_BOARDS_H
 #include <stdio.h>
 #include <stdlib.h>
-#include "utils.h"
+
 typedef struct Board{
     char** board;
 }Boards;
 
 Boards* initBoards();
+char** createBoard(int rows, int columns);
+void initBoard(char** board);
+
 #endif //ULTIMATE_TICTAC_TOE_BOARDS_H
