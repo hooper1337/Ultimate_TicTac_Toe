@@ -1,6 +1,7 @@
 #include "ui.h"
 #include "stdbool.h"
 #include "string.h"
+#include "game.h"
 
 void showBoards(Boards* boards, Game* game){
     printf("\n\t BOARDS WON");
@@ -53,26 +54,61 @@ void showBoards(Boards* boards, Game* game){
     printf("+------------------------+\n");
 }
 
-void startInterface(){
+void startInterface(Boards* boards, Game* game, Plays* plays){
     char option[20] = "";
     bool result = false;
 
-    printf("\nWelcome to ultimate tic-tac-toe.\n\n");
+    printf("\nWelcome to ultimate tic-tac-toe.\n");
     do {
-        printf("\nWhat type of game do you wish?\n1 - Against human.\n2 - Against computer.\n\n>");
+        printf("\nWhat do you want to do?\n0 - Load previous game.\n1 - Play against human.\n2 - Play against computer.\n3 - Exit the game.\n\n>");
+        fgets(option, 20, stdin);
+        option[strlen(option)-1] = '\0';
+
+        if (strcmp(option, "0\0") == 0) {
+            //call function to load the game
+        }else if (strcmp(option, "1\0") == 0) {
+            game->type = 1;
+            result = true;
+            playMenu(boards, game, plays);
+        } else if (strcmp(option, "2\0") == 0) {
+            game->type = 2;
+            result = true;
+            //do bot
+
+        }else if (strcmp(option, "3\0") == 0) {
+            //call function to quit the game
+            result = true;
+        }else
+            printf("\nThats a not valid type of game.\n");
+        fflush(stdin);
+    } while (!result);
+}
+
+void playMenu(Boards* boards, Game* game, Plays* plays){
+    char option[20] = "";
+    bool result = false;
+
+    do{
+        showBoards(boards, game);
+        printf("\nWhat do you want to do?\n");
+        printf("1 - Place a piece.\n");
+        printf("2 - Save the game.\n");
+        printf("3 - Exit the game.\n>");
         fgets(option, 20, stdin);
         option[strlen(option)-1] = '\0';
 
         if (strcmp(option, "1\0") == 0) {
+            //call function to play
+            playGameAgainstHuman(boards, game, plays);
+        }else if (strcmp(option, "2\0") == 0) {
+            //call function to save the game
             result = true;
-            // to do soon
-        } else if (strcmp(option, "2\0") == 0) {
-            // to do soon
+        }else if (strcmp(option, "3\0") == 0) {
+            //call function to quit the game
             result = true;
-        } else {
-            printf("\nThats a not valid type of game.\n");
-            result = false;
-        }
-        fflush(stdin);
-    } while (!result);
+        }else
+            printf("\nThats not a valid option.\n");
+    }while(!result);
 }
+
+
