@@ -73,8 +73,7 @@ void startInterface(Boards* boards, Game* game, Plays* plays){
         } else if (strcmp(option, "2\0") == 0) {
             game->type = 2;
             result = true;
-            //do bot
-
+            playMenu(boards, game, plays);
         }else if (strcmp(option, "3\0") == 0) {
             //call function to quit the game
             result = true;
@@ -98,10 +97,8 @@ void playMenu(Boards* boards, Game* game, Plays* plays){
         option[strlen(option)-1] = '\0';
 
         if (strcmp(option, "1\0") == 0) {
-            //call function to play
-            playGameAgainstHuman(boards, game, plays);
+            playGame(boards, game, plays);
         }else if (strcmp(option, "2\0") == 0) {
-            //call function to save the game
             result = true;
         }else if (strcmp(option, "3\0") == 0) {
             //call function to quit the game

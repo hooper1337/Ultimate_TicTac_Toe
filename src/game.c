@@ -1,3 +1,4 @@
+#include <time.h>
 #include "game.h"
 #include "string.h"
 #include "stdbool.h"
@@ -44,7 +45,7 @@ int getNextBoard(int r, int c){
     return c+(r*3);
 }
 
-void playGameAgainstHuman(Boards* boards, Game* game, Plays* plays){
+void playGame(Boards* boards, Game* game, Plays* plays){
     char row[20] = "";
     char column[20] = "";
     int r = 0;
@@ -65,6 +66,15 @@ void playGameAgainstHuman(Boards* boards, Game* game, Plays* plays){
             placePiece(boards, game->currentBoard, r, c, game->player);
             changePlayer(game);
             game->currentBoard = getNextBoard(r,c);
+            if(game->type == 2){
+                srand(time(0));
+                r = rand() % 3;
+                c = rand() % 3;
+                placePiece(boards, game->currentBoard, r, c, game->player);
+                printf("\nBot played in board [%d], row [%d] column[%d].\n", game->currentBoard, r, c);
+                changePlayer(game);
+                game->currentBoard = getNextBoard(r,c);
+            }
             result = true;
         }else
             printf("\nYou cant play in that position.\n");

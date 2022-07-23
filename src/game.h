@@ -16,7 +16,7 @@ typedef struct game{
 
 void initGame(Game* game);
 void changePlayer(Game* game);
-void playGameAgainstHuman(Boards* boards, Game* game, Plays* plays);
+void playGame(Boards* boards, Game* game, Plays* plays);
 void placePiece(Boards* boards, int board, int row, int column, char player);
 int getNextBoard(int r, int c);
 int validatePosition(char* row, char* column);
