@@ -21,11 +21,11 @@ void changePlayer(Game* game){
         game->player = 'A';
 }
 
-void placePiece(Boards* boards, int board, int row, int column, char player){
+void placePiece(char** board, int row, int column, char player){
     if(player == 'A')
-        boards[board].board[row][column] = 'X';
+        board[row][column] = 'X';
     else
-        boards[board].board[row][column] = 'O';
+        board[row][column] = 'O';
 }
 
 int validatePosition(char* row, char* column){
@@ -45,13 +45,122 @@ int getNextBoard(int r, int c){
     return c+(r*3);
 }
 
+void playBot(Boards* boards, Game* game){
+    int r=0;
+    int c=0;
+    srand(time(0));
+    r = rand() % 3;
+    c = rand() % 3;
+    placePiece(boards[game->currentBoard].board, r, c, game->player);
+    verifyBoardWin(boards, game->currentBoard, game->player, game->winboard);
+    printf("\nBot played in board [%d], row [%d] column[%d].\n", game->currentBoard, r, c);
+    changePlayer(game);
+    game->currentBoard = getNextBoard(r,c);
+}
+
+int verifyBoardWin(Boards* boards, int currentBoard, char player, char** winBoard){
+    if(verifyRow(boards,currentBoard, player) == 1)
+        printf("\nPlayer [%c] won board [%d] by row.\n", player, currentBoard);
+    else if(verifyColumn(boards,currentBoard,player) == 1)
+        printf("\nPlayer [%c] won board [%d] by column.\n", player, currentBoard);
+    else if(verifyDiagonal(boards, currentBoard, player) == 1)
+        printf("\nPlayer [%c] won board [%d] by diagonal.\n", player, currentBoard);
+    else
+        return 0;
+    if(currentBoard == 0 || currentBoard == 1 || currentBoard == 2)
+        placePiece(winBoard, 0, currentBoard, player);
+    else if(currentBoard == 3 || currentBoard == 4 || currentBoard == 5)
+        placePiece(winBoard, 1, currentBoard-3, player);
+    else if(currentBoard == 6 || currentBoard == 7 || currentBoard == 8)
+        placePiece(winBoard, 2, currentBoard-6, player);
+    return 1;
+}
+
+int verifyRow(Boards* boards, int currentBoard, char player){
+    int count = 0;
+
+    for(int i=0; i<3;) {
+        for (int j = 0; j < 3; j++) {
+            if (player == 'A') {
+                if (boards[currentBoard].board[i][j] == 'X')
+                    count++;
+            }
+            else {
+                if (boards[currentBoard].board[i][j] == 'O')
+                    count++;
+            }
+            if(count == 3)
+                return 1;
+        }
+        count=0;
+        i++;
+    }
+    return 0;
+}
+
+int verifyColumn(Boards* boards, int currentBoard, char player){
+    int count = 0;
+    for(int i=0; i<3;) {
+        for (int j = 0; j < 3; j++) {
+            if (player == 'A') {
+                if (boards[currentBoard].board[j][i] == 'X')
+                    count++;
+            }
+            else {
+                if (boards[currentBoard].board[j][i] == 'O')
+                    count++;
+            }
+            if(count == 3)
+                return 1;
+        }
+        count=0;
+        i++;
+    }
+    return 0;
+}
+
+int verifyDiagonal(Boards* boards, int currentBoard, char player){
+    int count = 0;
+    int i=0, j=0;
+    for(i; i<3;)
+        for (j; j < 3;) {
+            if (player == 'A') {
+                if (boards[currentBoard].board[i][j] == 'X')
+                    count++;
+            } else {
+                if (boards[currentBoard].board[i][j] == 'O')
+                    count++;
+            }
+            i++;
+            j++;
+        }
+    if(count == 3)
+        return 1;
+    count = 0;
+    i=0;
+    j=2;
+    for(i; i<3;)
+        for(j; j>=0;){
+            if (player == 'A') {
+                if (boards[currentBoard].board[i][j] == 'X')
+                    count++;
+            } else {
+                if (boards[currentBoard].board[i][j] == 'O')
+                    count++;
+            }
+            i++;
+            j--;
+        }
+    return count == 3 ? 1 : 0;
+}
+
+
 void playGame(Boards* boards, Game* game, Plays* plays){
     char row[20] = "";
     char column[20] = "";
     int r = 0;
     int c = 0;
     bool result = false;
-
     do{
         printf("\nPlayer [%c] you are playing in board [%d].\n", game->player, game->currentBoard);
         printf("\nIntroduce the row you wish to play.\n>");
@@ -63,18 +172,12 @@ void playGame(Boards* boards, Game* game, Plays* plays){
         if(validatePosition(row, column) == 1) {
             r = atoi(row);
             c = atoi(column);
-            placePiece(boards, game->currentBoard, r, c, game->player);
+            placePiece(boards[game->currentBoard].board, r, c, game->player);
+            verifyBoardWin(boards, game->currentBoard, game->player, game->winboard);
             changePlayer(game);
             game->currentBoard = getNextBoard(r,c);
-            if(game->type == 2){
-                srand(time(0));
-                r = rand() % 3;
-                c = rand() % 3;
-                placePiece(boards, game->currentBoard, r, c, game->player);
-                printf("\nBot played in board [%d], row [%d] column[%d].\n", game->currentBoard, r, c);
-                changePlayer(game);
-                game->currentBoard = getNextBoard(r,c);
-            }
+            if(game->type == 2)
+                playBot(boards, game);
             result = true;
         }else
             printf("\nYou cant play in that position.\n");

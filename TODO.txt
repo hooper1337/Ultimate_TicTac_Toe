@@ -1,0 +1,2 @@
+Verificar ao colocar peça se não tem lá uma colocada.
+E ao jogar num tabuleiro se a proxima jogada for num tabuleiro ja ganho, escolher outro tabuleiro.
