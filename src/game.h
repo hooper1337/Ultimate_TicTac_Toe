@@ -21,9 +21,11 @@ void placePiece(char** board, int row, int column, char player);
 int getNextBoard(int r, int c);
 int validatePosition(char* row, char* column);
 void playBot(Boards* boards, Game* game);
-int verifyRow(Boards* boards, int currentBoard, char player);
-int verifyColumn(Boards* boards, int currentBoard, char player);
-int verifyDiagonal(Boards* boards, int currentBoard, char player);
-int verifyBoardWin(Boards* boards, int currentBoard, char player, char** winBoard);
+int verifyRow(char** board, char player);
+int verifyColumn(char** board, char player);
+int verifyDiagonal(char** board, char player);
+int verifyBoardWin(char** board, int currentBoard,char player, char** winBoard);
+int verifyGlobalWinner(char** board, char player, Game* game);
+
 
 #endif //ULTIMATE_TICTAC_TOE_GAME_H

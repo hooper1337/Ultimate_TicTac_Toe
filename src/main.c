@@ -10,5 +10,7 @@ int main(){
     Boards* boards = initBoards();
     initGame(&game);
     startInterface(boards, &game, plays);
+    printf("\n\tPlayer [%c] won.\n", game.player);
+    showBoards(boards, &game);
     return 1;
 }

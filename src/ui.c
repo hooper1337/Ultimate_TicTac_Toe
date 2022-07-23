@@ -75,7 +75,7 @@ void startInterface(Boards* boards, Game* game, Plays* plays){
             result = true;
             playMenu(boards, game, plays);
         }else if (strcmp(option, "3\0") == 0) {
-            //call function to quit the game
+            //call function free memory
             result = true;
         }else
             printf("\nThats a not valid type of game.\n");
@@ -92,7 +92,8 @@ void playMenu(Boards* boards, Game* game, Plays* plays){
         printf("\nWhat do you want to do?\n");
         printf("1 - Place a piece.\n");
         printf("2 - Save the game.\n");
-        printf("3 - Exit the game.\n>");
+        printf("3 - See 'K' plays.\n>");
+        printf("4 - Exit the game.\n>");
         fgets(option, 20, stdin);
         option[strlen(option)-1] = '\0';
 
@@ -101,10 +102,16 @@ void playMenu(Boards* boards, Game* game, Plays* plays){
         }else if (strcmp(option, "2\0") == 0) {
             result = true;
         }else if (strcmp(option, "3\0") == 0) {
-            //call function to quit the game
+            //call function to see plays
             result = true;
+        }else if(strcmp(option, "4\0") == 0){
+            //call function to free memory
         }else
             printf("\nThats not a valid option.\n");
+        if(game->win == 1){
+            // call function to free memory
+            break;
+        }
     }while(!result);
 }
 
