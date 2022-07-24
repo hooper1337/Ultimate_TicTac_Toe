@@ -244,12 +244,19 @@ void insertNode(struct Play** play, int row, int column, char player, int board)
 
 int validateNumberOfPlays(char* plays, Game* game){
     int number=0;
-    number = atoi(plays);
-    if(number == 0){
+    if(strlen(plays) == 1){
+        if (isdigit(plays[0]) == 1)
+            number = atoi(plays);
+    }else if(strlen(plays) == 2){
+        if(strcmp(plays, "10\0") == 0)
+            number = atoi(plays);
+    }else{
+        printf("\nThats not a valid number of plays.\n");
+        return 0;
+    }if(number == 0){
         printf("\nYou cant see 0 plays.\n");
         return 0;
-    }
-    if(number > 10){
+    }if(number > 10){
         printf("\nYou cant see more than 10 plays.\n");
         return 0;
     }if(number > game->nPlays){
