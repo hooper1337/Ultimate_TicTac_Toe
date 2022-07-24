@@ -54,7 +54,7 @@ void showBoards(Boards* boards, Game* game){
     printf("+------------------------+\n");
 }
 
-void startInterface(Boards* boards, Game* game, Plays* plays){
+void startInterface(Boards* boards, Game* game, struct Play** plays){
     char option[20] = "";
     bool result = false;
 
@@ -83,33 +83,34 @@ void startInterface(Boards* boards, Game* game, Plays* plays){
     } while (!result);
 }
 
-void playMenu(Boards* boards, Game* game, Plays* plays){
+void playMenu(Boards* boards, Game* game, struct Play** plays){
     char option[20] = "";
     bool result = false;
-
     do{
         showBoards(boards, game);
         printf("\nWhat do you want to do?\n");
         printf("1 - Place a piece.\n");
         printf("2 - Save the game.\n");
-        printf("3 - See 'K' plays.\n>");
-        printf("4 - Exit the game.\n>");
+        printf("3 - See 'K' plays.\n");
+        printf("4 - Exit the game.\n\n>");
         fgets(option, 20, stdin);
         option[strlen(option)-1] = '\0';
-
         if (strcmp(option, "1\0") == 0) {
             playGame(boards, game, plays);
         }else if (strcmp(option, "2\0") == 0) {
             result = true;
+            //call function to free memory
         }else if (strcmp(option, "3\0") == 0) {
-            //call function to see plays
-            result = true;
+            showPlays(*plays, game);
         }else if(strcmp(option, "4\0") == 0){
             //call function to free memory
+            result = true;
         }else
             printf("\nThats not a valid option.\n");
         if(game->win == 1){
             // call function to free memory
+            printf("\n\tPlayer [%c] won.\n");
+            showBoards(boards, game);
             break;
         }
     }while(!result);

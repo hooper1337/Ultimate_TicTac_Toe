@@ -4,13 +4,13 @@
 #include "stdbool.h"
 #include "ctype.h"
 
-
 void initGame(Game* game){
     game->tie = 0;
     game->win = 0;
     game->player = 'A';
     game->currentBoard = 0;
     game->winboard = createBoard(3,3);
+    game->nPlays = 0;
     initBoard(game->winboard);
 }
 
@@ -21,11 +21,19 @@ void changePlayer(Game* game){
         game->player = 'A';
 }
 
-void placePiece(char** board, int row, int column, char player){
-    if(player == 'A')
-        board[row][column] = 'X';
-    else
-        board[row][column] = 'O';
+int placePiece(char** board, int row, int column, char player){
+    if(player == 'A'){
+        if(board[row][column] == '_'){
+            board[row][column] = 'X';
+            return 1;
+        }
+    }else{
+        if(board[row][column] == '_'){
+            board[row][column] = 'O';
+            return 1;
+        }
+    }
+    return 0;
 }
 
 int validatePosition(char* row, char* column){
@@ -45,14 +53,22 @@ int getNextBoard(int r, int c){
     return c+(r*3);
 }
 
-void playBot(Boards* boards, Game* game){
+void playBot(Boards* boards, Game* game, struct Play** plays){
     int r=0;
     int c=0;
     srand(time(0));
     r = rand() % 3;
     c = rand() % 3;
-    placePiece(boards[game->currentBoard].board, r, c, game->player);
-    verifyBoardWin(boards[game->currentBoard].board, game->currentBoard, game->player, game->winboard);
+    while(boards[game->currentBoard].won == 1){
+        int board = rand() % 9;
+        game->currentBoard = board;
+    }
+    while(placePiece(boards[game->currentBoard].board, r, c, game->player) != 1){
+        r = rand() % 3;
+        c = rand() % 3;
+    }
+    insertNode(plays,r,c,game->player,game->currentBoard);
+    verifyBoardWin(boards[game->currentBoard].board, game->currentBoard, game->player, game->winboard, boards);
     printf("\nBot played in board [%d], row [%d] column[%d].\n", game->currentBoard, r, c);
     changePlayer(game);
     game->currentBoard = getNextBoard(r,c);
@@ -66,13 +82,19 @@ int verifyGlobalWinner(char** board, char player, Game* game){
     return 0;
 }
 
-int verifyBoardWin(char** board, int currentBoard, char player, char** winBoard){
-    if(verifyRow(board,player) == 1)
+int verifyBoardWin(char** board, int currentBoard, char player, char** winBoard, Boards* boards){
+    if(verifyRow(board,player) == 1){
         printf("\nPlayer [%c] won board [%d] by row.\n", player, currentBoard);
-    else if(verifyColumn(board,player) == 1)
+        boards[currentBoard].won = 1;
+    }
+    else if(verifyColumn(board,player) == 1){
         printf("\nPlayer [%c] won board [%d] by column.\n", player, currentBoard);
-    else if(verifyDiagonal(board, player) == 1)
+        boards[currentBoard].won = 1;
+    }
+    else if(verifyDiagonal(board, player) == 1){
         printf("\nPlayer [%c] won board [%d] by diagonal.\n", player, currentBoard);
+        boards[currentBoard].won = 1;
+    }
     else
         return 0;
     if(currentBoard == 0 || currentBoard == 1 || currentBoard == 2)
@@ -163,13 +185,19 @@ int verifyDiagonal(char** board, char player){
 }
 
 
-void playGame(Boards* boards, Game* game, Plays* plays){
+void playGame(Boards* boards, Game* game, struct Play** plays){
     char row[20] = "";
     char column[20] = "";
     int r = 0;
     int c = 0;
     bool result = false;
+
     do{
+        while(boards[game->currentBoard].won == 1){
+            srand(time(0));
+            int board = rand() % 9;
+            game->currentBoard = board;
+        }
         printf("\nPlayer [%c] you are playing in board [%d].\n", game->player, game->currentBoard);
         printf("\nIntroduce the row you wish to play.\n>");
         fgets(row, 20, stdin);
@@ -180,16 +208,69 @@ void playGame(Boards* boards, Game* game, Plays* plays){
         if(validatePosition(row, column) == 1) {
             r = atoi(row);
             c = atoi(column);
-            placePiece(boards[game->currentBoard].board, r, c, game->player);
-            verifyBoardWin(boards[game->currentBoard].board, game->currentBoard, game->player, game->winboard);
-            if(verifyGlobalWinner(game->winboard, game->player, game) == 1 && game->win == 1)
-                break;
-            changePlayer(game);
-            game->currentBoard = getNextBoard(r,c);
+            if(placePiece(boards[game->currentBoard].board, r, c, game->player) == 1){
+                game->nPlays++;
+                insertNode(plays,r,c,game->player,game->currentBoard);
+                verifyBoardWin(boards[game->currentBoard].board, game->currentBoard, game->player, game->winboard, boards);
+                if(verifyGlobalWinner(game->winboard, game->player, game) == 1 && game->win == 1)
+                    break;
+                changePlayer(game);
+                game->currentBoard = getNextBoard(r,c);
+            }else
+                printf("\nYou cant play there because there is a piece in that position.\n");
             if(game->type == 2)
-                playBot(boards, game);
+                playBot(boards, game, plays);
             result = true;
         }else
-            printf("\nYou cant play in that position.\n");
+            printf("\nThats not a valid position\n");
     }while(!result);
+}
+
+void insertNode(struct Play** play, int row, int column, char player, int board){
+    struct Play* newNode;
+    newNode = malloc(sizeof (struct Play));
+    if(newNode == NULL){
+        printf("\nError allocating memory for the new play.\n");
+        return;
+    }
+    newNode->row = row;
+    newNode->column = column;
+    newNode->player = player;
+    newNode->board = board;
+    newNode->nextplay = (*play);
+    (*play) = newNode;
+}
+
+int validateNumberOfPlays(char* plays, Game* game){
+    int number=0;
+    number = atoi(plays);
+    if(number > 10){
+        printf("\nYou cant see more than 10 plays.\n");
+        return 0;
+    }if(number > game->nPlays){
+        printf("\nGame only has %d plays yet.\n", game->nPlays);
+        return 0;
+    }
+    return 1;
+}
+
+void showPlays(struct Play* play, Game* game) {
+    char plays[20];
+    int number = 0;
+    printf("\nHow many plays do you want to see?\n\n>");
+    fgets(plays, 20, stdin);
+    plays[strlen(plays)-1] = '\0';
+
+    if(validateNumberOfPlays(plays, game) == 1){
+        printf("\nPlays:\n");
+        while (play != NULL) {
+            printf("\nPlayer: %c", play->player);
+            printf("\nBoard: %d", play->board);
+            printf("\nRow: %d", play->row);
+            printf("\nColumn: %d\n", play->column);
+            play = play->nextplay;
+        }
+        printf("\n");
+    }else
+        return;
 }

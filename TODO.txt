@@ -1,6 +1,4 @@
-Verificar ao colocar peça se não tem lá uma colocada.
-E ao jogar num tabuleiro se a proxima jogada for num tabuleiro ja ganho, escolher outro tabuleiro.
 Ver todos os sitios onde o jogo acaba e chamar a funcao para libertar a memoria de tudo.
 Fazer o empate.
 Lista ligada
-Ficheiros(guardar/carregar)
+Ficheiros(guardar/carregar/texto)

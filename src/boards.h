@@ -5,6 +5,7 @@
 
 typedef struct Board{
     char** board;
+    int won;
 }Boards;
 
 Boards* initBoards();

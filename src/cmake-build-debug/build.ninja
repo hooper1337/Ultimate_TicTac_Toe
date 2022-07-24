@@ -67,20 +67,8 @@ build CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj: C_COMPILER__Ultimate_TicTac
   OBJECT_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
   OBJECT_FILE_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
 
-build CMakeFiles/Ultimate_TicTac_Toe.dir/plays.c.obj: C_COMPILER__Ultimate_TicTac_Toe_Debug C$:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/plays.c || cmake_object_order_depends_target_Ultimate_TicTac_Toe
-  DEP_FILE = CMakeFiles\Ultimate_TicTac_Toe.dir\plays.c.obj.d
-  FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
-  OBJECT_FILE_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
-
 build CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj: C_COMPILER__Ultimate_TicTac_Toe_Debug C$:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/ui.c || cmake_object_order_depends_target_Ultimate_TicTac_Toe
   DEP_FILE = CMakeFiles\Ultimate_TicTac_Toe.dir\ui.c.obj.d
-  FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
-  OBJECT_FILE_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
-
-build CMakeFiles/Ultimate_TicTac_Toe.dir/utils.c.obj: C_COMPILER__Ultimate_TicTac_Toe_Debug C$:/Users/Hugo/Desktop/Ultimate_TicTac_Toe/src/utils.c || cmake_object_order_depends_target_Ultimate_TicTac_Toe
-  DEP_FILE = CMakeFiles\Ultimate_TicTac_Toe.dir\utils.c.obj.d
   FLAGS = -g -std=gnu99
   OBJECT_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
   OBJECT_FILE_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir
@@ -93,7 +81,7 @@ build CMakeFiles/Ultimate_TicTac_Toe.dir/utils.c.obj: C_COMPILER__Ultimate_TicTa
 #############################################
 # Link the executable Ultimate_TicTac_Toe.exe
 
-build Ultimate_TicTac_Toe.exe: C_EXECUTABLE_LINKER__Ultimate_TicTac_Toe_Debug CMakeFiles/Ultimate_TicTac_Toe.dir/main.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/boards.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/plays.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/utils.c.obj
+build Ultimate_TicTac_Toe.exe: C_EXECUTABLE_LINKER__Ultimate_TicTac_Toe_Debug CMakeFiles/Ultimate_TicTac_Toe.dir/main.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/boards.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Ultimate_TicTac_Toe.dir

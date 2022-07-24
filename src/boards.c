@@ -9,9 +9,10 @@ Boards* initBoards(){
 
     for(int i=0; i<9; i++){
         boards[i].board = createBoard(3,3);
+        boards[i].won = 0;
         initBoard(boards[i].board);
     }
-    return(boards);
+    return boards;
 }
 
 char** createBoard(int rows, int columns){
@@ -30,7 +31,7 @@ char** createBoard(int rows, int columns){
             return NULL;
         }
     }
-    return (matrix);
+    return matrix;
 }
 
 void initBoard(char** board){
