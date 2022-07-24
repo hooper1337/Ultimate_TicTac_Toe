@@ -37,8 +37,8 @@ int placePiece(char** board, int row, int column, char player){
 }
 
 int validatePosition(char* row, char* column){
-    int r=0;
-    int c=0;
+    int r;
+    int c;
     if(strlen(row) == 1 && strlen(column) == 1)
         if (isdigit(row[0]) == 1 && isdigit(column[0]) == 1) {
             r = atoi(row);
@@ -189,8 +189,8 @@ int verifyDiagonal(char** board, char player){
 void playGame(Boards* boards, Game* game, struct Play** plays){
     char row[20] = "";
     char column[20] = "";
-    int r = 0;
-    int c = 0;
+    int r;
+    int c;
     bool result = false;
 
     do{
@@ -269,7 +269,7 @@ int validateNumberOfPlays(char* plays, Game* game){
 void showPlays(struct Play* play, Game* game) {
     char plays[20];
     int counter = 0;
-    int playsCounter = 0;
+    int playsCounter;
     printf("\nHow many plays do you want to see?\n\n>");
     fgets(plays, 20, stdin);
     plays[strlen(plays)-1] = '\0';
@@ -288,4 +288,19 @@ void showPlays(struct Play* play, Game* game) {
         printf("\n");
     }else
         return;
+}
+
+int verifyTie(Game* game){
+    int count=0;
+    if(game->nPlays == 81)
+        return 1;
+    else{
+        for(int i=0; i<3; i++)
+            for(int j=0; j<3; j++)
+                if(game->winboard[i][j] != '_')
+                    count++;
+        if(count == 9 && verifyGlobalWinner(game->winboard, game->player, game) == 0)
+            return 1;
+    }
+    return 0;
 }

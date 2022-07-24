@@ -34,4 +34,5 @@ int verifyBoardWin(char** board, int currentBoard,char player, char** winBoard, 
 int verifyGlobalWinner(char** board, char player, Game* game);
 void insertNode(struct Play** play, int row, int column, char player, int board);
 void showPlays(struct Play* play, Game* game);
+int verifyTie(Game* game);
 #endif //ULTIMATE_TICTAC_TOE_GAME_H

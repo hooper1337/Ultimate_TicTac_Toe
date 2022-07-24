@@ -115,6 +115,11 @@ void playMenu(Boards* boards, Game* game, struct Play** plays){
             freeAll(boards, game, *plays);
             break;
         }
+        if(verifyTie(game) == 1){
+            printf("\nThe game ended in tie.\n");
+            freeAll(boards, game, *plays);
+            break;
+        }
     }while(!result);
 }
 
