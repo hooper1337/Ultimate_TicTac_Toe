@@ -67,6 +67,7 @@ void playBot(Boards* boards, Game* game, struct Play** plays){
         r = rand() % 3;
         c = rand() % 3;
     }
+    game->nPlays++;
     insertNode(plays,r,c,game->player,game->currentBoard);
     verifyBoardWin(boards[game->currentBoard].board, game->currentBoard, game->player, game->winboard, boards);
     printf("\nBot played in board [%d], row [%d] column[%d].\n", game->currentBoard, r, c);
@@ -260,19 +261,22 @@ int validateNumberOfPlays(char* plays, Game* game){
 
 void showPlays(struct Play* play, Game* game) {
     char plays[20];
-    int number = 0;
+    int counter = 0;
+    int playsCounter = 0;
     printf("\nHow many plays do you want to see?\n\n>");
     fgets(plays, 20, stdin);
     plays[strlen(plays)-1] = '\0';
 
     if(validateNumberOfPlays(plays, game) == 1){
+        playsCounter = atoi(plays);
         printf("\nPlays:\n");
-        while (play != NULL) {
+        while (counter < playsCounter) {
             printf("\nPlayer: %c", play->player);
             printf("\nBoard: %d", play->board);
             printf("\nRow: %d", play->row);
             printf("\nColumn: %d\n", play->column);
             play = play->nextplay;
+            counter++;
         }
         printf("\n");
     }else

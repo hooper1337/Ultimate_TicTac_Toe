@@ -2,6 +2,7 @@
 #define ULTIMATE_TICTAC_TOE_UI_H
 #include "game.h"
 #include "boards.h"
+#include "files.h"
 void showBoards(Boards* boards, Game* game);
 void startInterface(Boards* boards, Game* game, struct Play** plays);
 void playMenu(Boards* boards, Game* game, struct Play** plays);

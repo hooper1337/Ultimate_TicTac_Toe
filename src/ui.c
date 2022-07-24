@@ -1,7 +1,6 @@
 #include "ui.h"
 #include "stdbool.h"
 #include "string.h"
-#include "game.h"
 #include "utils.h"
 
 void showBoards(Boards* boards, Game* game){
@@ -66,7 +65,7 @@ void startInterface(Boards* boards, Game* game, struct Play** plays){
         option[strlen(option)-1] = '\0';
 
         if (strcmp(option, "0\0") == 0) {
-            //call function to load the game
+            loadGame(boards, game, plays);
         }else if (strcmp(option, "1\0") == 0) {
             game->type = 1;
             result = true;
@@ -100,7 +99,7 @@ void playMenu(Boards* boards, Game* game, struct Play** plays){
             playGame(boards, game, plays);
         }else if (strcmp(option, "2\0") == 0) {
             result = true;
-            //call function to save the game
+            saveGame(boards, game, *plays);
             freeAll(boards, game, *plays);
         }else if (strcmp(option, "3\0") == 0) {
             showPlays(*plays, game);
