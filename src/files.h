@@ -4,4 +4,5 @@
 #include "game.h"
 void saveGame(Boards* boards, Game* game, struct Play* plays);
 void loadGame(Boards* boards, Game* game, struct Play** plays);
+void resumeOfGame(struct Play* plays);
 #endif //ULTIMATE_TICTAC_TOE_FILES_H

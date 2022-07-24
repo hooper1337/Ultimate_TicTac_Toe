@@ -14,6 +14,7 @@ void saveGame(Boards* boards, Game* game, struct Play* plays){
         fwrite(&plays->column, sizeof(int), 1, f);
         plays = plays->nextplay;
     }
+    fclose(f);
 }
 
 void loadGame(Boards* boards, Game* game, struct Play** plays){
@@ -39,4 +40,19 @@ void loadGame(Boards* boards, Game* game, struct Play** plays){
         verifyBoardWin(boards[board].board, board, player, game->winboard, boards);
         count++;
     }
+    fclose(f);
+}
+
+void resumeOfGame(struct Play* plays){
+    FILE *f;
+    f = fopen("resume.txt", "w");
+    if(f == NULL){
+        printf("\nError opening the desired file\n");
+        return;
+    }
+    while(plays != NULL){
+        fprintf(f, "Player: [%c], played row - [%d] column - [%d], in board [%d].\n", plays->player, plays->row, plays->column, plays->board);
+        plays = plays->nextplay;
+    }
+    fclose(f);
 }

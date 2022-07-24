@@ -109,8 +109,9 @@ void playMenu(Boards* boards, Game* game, struct Play** plays){
         }else
             printf("\nThats not a valid option.\n");
         if(game->win == 1){
-            printf("\n\tPlayer [%c] won.\n");
+            printf("\n\tPlayer [%c] won.\n", game->player);
             showBoards(boards, game);
+            resumeOfGame(*plays);
             freeAll(boards, game, *plays);
             break;
         }
