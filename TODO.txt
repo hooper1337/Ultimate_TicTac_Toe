@@ -1,4 +1,2 @@
-Ver todos os sitios onde o jogo acaba e chamar a funcao para libertar a memoria de tudo.
 Fazer o empate.
-Lista ligada
 Ficheiros(guardar/carregar/texto)

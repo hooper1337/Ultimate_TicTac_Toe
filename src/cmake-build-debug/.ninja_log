@@ -1,14 +1,14 @@
 # ninja log v5
 16	152	6803246905630832	CMakeFiles/Ultimate_TicTac_Toe.dir/plays.c.obj	13ddfea8729eef0c
-2	127	6803247861719740	CMakeFiles/Ultimate_TicTac_Toe.dir/main.c.obj	eba25ea9faccca51
-123	240	6803248427162735	Ultimate_TicTac_Toe.exe	2f15a2542d49aae7
-1	122	6803248426021411	CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj	a62c1fede4de2eef
-12	147	6803247861969078	CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj	9f5aee96fa21426d
-9	191	6803167521937628	CMakeFiles/Ultimate_TicTac_Toe.dir/boards.c.obj	34d14974da40bfd9
-1	365	6803249686905433	build.ninja	1a3b2917da0e561a
-5	295	6803249690647285	CMakeFiles/Ultimate_TicTac_Toe.dir/main.c.obj	eba25ea9faccca51
-1	296	6803249690647285	CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj	9f5aee96fa21426d
-9	297	6803249690656848	CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj	a62c1fede4de2eef
-297	474	6803249692415111	Ultimate_TicTac_Toe.exe	2c2476941ae1f996
-3	173	6803251010866768	CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj	a62c1fede4de2eef
-174	291	6803251011993952	Ultimate_TicTac_Toe.exe	2c2476941ae1f996
+3	97	6803650475818773	CMakeFiles/Ultimate_TicTac_Toe.dir/main.c.obj	eba25ea9faccca51
+90	180	6803651436211449	Ultimate_TicTac_Toe.exe	2c2476941ae1f996
+7	131	6803650476163680	CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj	a62c1fede4de2eef
+2	89	6803651435343449	CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj	9f5aee96fa21426d
+12	172	6803648302299109	CMakeFiles/Ultimate_TicTac_Toe.dir/boards.c.obj	34d14974da40bfd9
+1	365	6803652248071177	build.ninja	1a3b2917da0e561a
+23	170	6803655431032546	CMakeFiles/Ultimate_TicTac_Toe.dir/utils.c.obj	6dbf38f4e6eddf05
+3	174	6803655431062352	CMakeFiles/Ultimate_TicTac_Toe.dir/main.c.obj	eba25ea9faccca51
+8	193	6803655431251685	CMakeFiles/Ultimate_TicTac_Toe.dir/boards.c.obj	34d14974da40bfd9
+18	205	6803655431471096	CMakeFiles/Ultimate_TicTac_Toe.dir/ui.c.obj	9f5aee96fa21426d
+13	206	6803655431483063	CMakeFiles/Ultimate_TicTac_Toe.dir/game.c.obj	a62c1fede4de2eef
+206	301	6803655432398613	Ultimate_TicTac_Toe.exe	56655899c09e2e56

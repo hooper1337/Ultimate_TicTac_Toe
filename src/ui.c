@@ -2,6 +2,7 @@
 #include "stdbool.h"
 #include "string.h"
 #include "game.h"
+#include "utils.h"
 
 void showBoards(Boards* boards, Game* game){
     printf("\n\t BOARDS WON");
@@ -75,7 +76,7 @@ void startInterface(Boards* boards, Game* game, struct Play** plays){
             result = true;
             playMenu(boards, game, plays);
         }else if (strcmp(option, "3\0") == 0) {
-            //call function free memory
+            freeAll(boards, game, *plays);
             result = true;
         }else
             printf("\nThats a not valid type of game.\n");
@@ -99,18 +100,19 @@ void playMenu(Boards* boards, Game* game, struct Play** plays){
             playGame(boards, game, plays);
         }else if (strcmp(option, "2\0") == 0) {
             result = true;
-            //call function to free memory
+            //call function to save the game
+            freeAll(boards, game, *plays);
         }else if (strcmp(option, "3\0") == 0) {
             showPlays(*plays, game);
         }else if(strcmp(option, "4\0") == 0){
-            //call function to free memory
+            freeAll(boards, game, *plays);
             result = true;
         }else
             printf("\nThats not a valid option.\n");
         if(game->win == 1){
-            // call function to free memory
             printf("\n\tPlayer [%c] won.\n");
             showBoards(boards, game);
+            freeAll(boards, game, *plays);
             break;
         }
     }while(!result);

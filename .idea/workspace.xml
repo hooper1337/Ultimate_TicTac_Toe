@@ -54,12 +54,12 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Ultimate_TicTac_Toe" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ultimate_TicTac_Toe" TARGET_NAME="Ultimate_TicTac_Toe" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Ultimate_TicTac_Toe" RUN_TARGET_NAME="Ultimate_TicTac_Toe">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="Ultimate_TicTac_Toe" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ultimate_TicTac_Toe" TARGET_NAME="Ultimate_TicTac_Toe" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Ultimate_TicTac_Toe" RUN_TARGET_NAME="Ultimate_TicTac_Toe">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -81,6 +81,7 @@
       <workItem from="1658589467136" duration="1700000" />
       <workItem from="1658611958888" duration="8841000" />
       <workItem from="1658620886818" duration="1067000" />
+      <workItem from="1658659804105" duration="2500000" />
     </task>
     <servers />
   </component>
